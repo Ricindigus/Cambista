@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ricindigus.cambista.modules.authentication.views.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".modules.authentication.views.login.LoginActivity">
+
+
+        <ImageView
+            android:id="@+id/ivLogo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvUser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/tvUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            style="@style/HeaderInputStyle"
+            android:text="@string/header_user"
+            app:layout_constraintBottom_toTopOf="@+id/etUser"
+            app:layout_constraintStart_toStartOf="@+id/etUser" />
+
+        <EditText
+            android:id="@+id/etUser"
+            android:layout_width="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:inputType="textEmailAddress"
+            android:text="@={viewModel.userValue}"
+            style="@style/InputStyle"
+            app:layout_constraintBottom_toTopOf="@+id/btnInitSession"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            style="@style/HeaderInputStyle"
+            android:text="@string/header_password"
+            app:layout_constraintStart_toStartOf="@+id/etUser"
+            app:layout_constraintTop_toBottomOf="@+id/etUser" />
+
+
+        <EditText
+            android:id="@+id/etPassword"
+            style="@style/InputStyle"
+            android:text="@={viewModel.passwordValue}"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/etUser"
+            app:layout_constraintStart_toStartOf="@+id/tvPassword"
+            app:layout_constraintTop_toBottomOf="@+id/tvPassword" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnInitSession"
+            style="@style/ButtonStyle"
+            android:onClick="@{()->viewModel.attemptLogin()}"
+            app:enableButton="@{viewModel.enableContinueButton}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:text="@string/button_login_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/etPassword"
+            app:layout_constraintStart_toStartOf="@+id/etPassword" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:isShowView="@{viewModel.showLoading}"
+            tools:visibility="gone"
+            android:background="@color/transparent_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <ProgressBar
+                android:id="@+id/pbLoading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loading_text"
+                android:textColor="@color/white"
+                android:layout_below="@id/pbLoading"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

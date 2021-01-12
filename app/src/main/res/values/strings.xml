@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Cambista</string>
+    <string name="header_user">Usuario</string>
+    <string name="header_password">Constraseña</string>
+    <string name="button_login_text">INICIAR SESIÓN</string>
+    <string name="loading_text">Cargando...</string>
+    <string name="mail_user_text"><u>Prueba@Kambista.com</u></string>
+    <string name="welcome_text">¡Bienvenido!</string>
+    <string name="error_text">Se produjo un error al iniciar sesión</string>
+</resources>
